@@ -16,6 +16,8 @@ RUN apt-get update && \
 
 COPY ombi/ /etc/ombi/
 
+VOLUME /data
+
 CMD ["/etc/ombi/start.sh"]
 
 EXPOSE 3579

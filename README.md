@@ -5,7 +5,7 @@ docker run \
 --init \
 --name ombi \
 --network backend \
---volume ombi-data:/data \
+--volume /mnt/ombi-data:/data \
 --publish 3579:3579 \
 bmoorman/ombi
 ```

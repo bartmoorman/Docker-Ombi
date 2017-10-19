@@ -7,7 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get dist-upgrade --yes && \
-    apt-get install --yes --no-install-recommends tzdata curl ca-certificates libunwind8 && \
+    apt-get install --yes --no-install-recommends tzdata curl ca-certificates libunwind8 libicu55 && \
     mkdir /opt/Ombi && \
     curl --silent --location "https://ci.appveyor.com/api/projects/tidusjar/requestplex/artifacts/linux.tar.gz" | tar xz -C /opt/Ombi && \
     apt-get autoremove --yes --purge && \

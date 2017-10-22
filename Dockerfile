@@ -9,7 +9,7 @@ WORKDIR /opt/Ombi
 
 RUN apt-get update && \
     apt-get dist-upgrade --yes && \
-    apt-get install --yes --no-install-recommends tzdata locales wget ca-certificates jq unzip mono-devel && \
+    apt-get install --yes --no-install-recommends tzdata locales ca-certificates wget jq unzip mono-devel && \
     locale-gen en_US.UTF-8 && \
     wget --quiet --directory-prefix /tmp "$(wget --quiet --output-document - "https://api.github.com/repos/tidusjar/Ombi/releases" | jq -r '.[0].assets[].browser_download_url')" && \
     unzip -q /tmp/Ombi.zip && \

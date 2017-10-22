@@ -9,7 +9,7 @@ WORKDIR /opt/Ombi
 
 RUN apt-get update && \
     apt-get dist-upgrade --yes && \
-    apt-get install --yes --no-install-recommends tzdata curl ca-certificates libunwind8 libicu55 libcurl3 libnss-mdns && \
+    apt-get install --yes --no-install-recommends tzdata curl ca-certificates libunwind8 libicu55 libcurl3 && \
     curl --silent --location "https://ci.appveyor.com/api/projects/tidusjar/requestplex/artifacts/linux.tar.gz" | tar xz && \
     apt-get autoremove --yes --purge && \
     apt-get clean && \

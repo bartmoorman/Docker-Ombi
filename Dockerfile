@@ -9,7 +9,7 @@ WORKDIR /opt/Ombi
 
 RUN apt-get update && \
     apt-get dist-upgrade --yes && \
-    apt-get install --yes --no-install-recommends tzdata locales curl ca-certificates libunwind8 libicu55 libcurl3 && \
+    apt-get install --yes --no-install-recommends tzdata locales ca-certificates curl libunwind8 libicu55 libcurl3 && \
     locale-gen en_US.UTF-8 && \
     curl --silent --location "https://ci.appveyor.com/api/projects/tidusjar/requestplex/artifacts/linux.tar.gz" | tar xz && \
     apt-get autoremove --yes --purge && \

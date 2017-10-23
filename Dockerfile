@@ -1,18 +1,10 @@
-FROM ubuntu:xenial
-
-ENV TZ="America/Denver" \
-    LANG="en_US.UTF-8" \
-    LANGUAGE="en_US.UTF-8" \
-    LC_ALL="en_US.UTF-8"
-
-ARG DEBIAN_FRONTEND="noninteractive"
+FROM bmoorman/ubuntu
 
 WORKDIR /opt/Ombi
 
 RUN apt-get update && \
     apt-get dist-upgrade --yes && \
-    apt-get install --yes --no-install-recommends tzdata locales ca-certificates curl libunwind8 libicu55 libcurl3 && \
-    locale-gen en_US.UTF-8 && \
+    apt-get install --yes --no-install-recommends curl libunwind8 libicu55 libcurl3 && \
     curl --silent --location "https://ci.appveyor.com/api/projects/tidusjar/requestplex/artifacts/linux.tar.gz" | tar xz && \
     apt-get autoremove --yes --purge && \
     apt-get clean && \

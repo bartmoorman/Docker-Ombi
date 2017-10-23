@@ -1,25 +1,17 @@
-FROM ubuntu:xenial
-
-ENV TZ="America/Denver" \
-    LANG="en_US.UTF-8"
-
-ARG DEBIAN_FRONTEND=noninteractive
+FROM bmoorman/ubuntu
 
 WORKDIR /opt/Ombi
 
 RUN apt-get update && \
     apt-get dist-upgrade --yes && \
-    apt-get install --yes --no-install-recommends tzdata locales ca-certificates wget jq unzip mono-devel && \
-    locale-gen en_US.UTF-8 && \
-    wget --quiet --directory-prefix /tmp "$(wget --quiet --output-document - "https://api.github.com/repos/tidusjar/Ombi/releases" | jq -r '.[0].assets[].browser_download_url')" && \
+    apt-get install --yes --no-install-recommends wget curl jq unzip mono-devel && \
+    wget --quiet --directory-prefix /tmp "$(curl --silent --location "https://api.github.com/repos/tidusjar/Ombi/releases" | jq -r '.[0].assets[].browser_download_url')" && \
     unzip -q /tmp/Ombi.zip && \
     apt-get autoremove --yes --purge && \
     apt-get clean && \
     rm --recursive --force /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY ombi/ /etc/ombi/
-
-VOLUME /data
 
 CMD ["/etc/ombi/start.sh"]
 

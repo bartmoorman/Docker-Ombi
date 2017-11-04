@@ -7,5 +7,5 @@ docker run \
 --network backend \
 --volume /mnt/ombi-data:/data \
 --publish 3579:5000 \
-bmoorman/ombi:beta
+bmoorman/ombi
 ```

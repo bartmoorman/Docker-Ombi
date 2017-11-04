@@ -1,5 +1,7 @@
 FROM bmoorman/ubuntu
 
+ARG DEBIAN_FRONTEND="noninteractive"
+
 WORKDIR /opt/Ombi
 
 RUN apt-get update && \
@@ -12,8 +14,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm --recursive --force /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY ombi/ /etc/ombi/
-
-CMD ["/etc/ombi/start.sh"]
+CMD ["mono", "/opt/Ombi/Release/Ombi.exe"]
 
 EXPOSE 3579

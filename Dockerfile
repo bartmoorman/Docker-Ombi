@@ -1,5 +1,7 @@
 FROM bmoorman/ubuntu
 
+ARG DEBIAN_FRONTEND="noninteractive"
+
 WORKDIR /opt/Ombi
 
 RUN apt-get update && \
@@ -10,10 +12,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm --recursive --force /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY ombi/ /etc/ombi/
-
 VOLUME /data
 
-CMD ["/etc/ombi/start.sh"]
+CMD ["/opt/Ombi/Ombi", "--storage", "/data"]
 
 EXPOSE 5000

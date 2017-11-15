@@ -15,8 +15,10 @@ RUN apt-get update \
  && apt-get clean \
  && rm --recursive --force /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+COPY ombi/ /etc/ombi/
+
 VOLUME /data
 
 EXPOSE 5000
 
-CMD ["/opt/Ombi/Ombi", "--storage", "/data"]
+CMD ["/etc/ombi/start.sh"]

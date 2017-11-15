@@ -17,7 +17,7 @@ RUN apt-get update \
 
 COPY ombi/ /etc/ombi/
 
-VOLUME /data
+VOLUME /config
 
 EXPOSE 5000
 

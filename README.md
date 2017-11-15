@@ -5,7 +5,7 @@ docker run \
 --init \
 --name ombi \
 --hostname ombi \
---volume ombi-data:/data \
+--volume ombi-config:/config \
 --publish 3579:5000 \
 bmoorman/ombi
 ```

@@ -11,7 +11,8 @@ RUN apt-get update \
     libcurl3 \
     libicu55 \
     libunwind8 \
- && fileUrl=$(curl --silent --location "https://api.github.com/repos/tidusjar/Ombi/releases" | jq --raw-output '.[0].assets[] | select(.name == "linux.tar.gz") | .browser_download_url') \
+# && fileUrl=$(curl --silent --location "https://api.github.com/repos/tidusjar/Ombi/releases" | jq --raw-output '.[0].assets[] | select(.name == "linux.tar.gz") | .browser_download_url') \
+ && fileUrl=$(curl --silent --location "https://api.github.com/repos/tidusjar/Ombi/releases" | jq --raw-output '[.[] | select(.prerelease == true)][0].assets[] | select(.name == "linux.tar.gz") | .browser_download_url') \
  && curl --silent --location "${fileUrl}" | tar xz \
  && apt-get autoremove --yes --purge \
  && apt-get clean \

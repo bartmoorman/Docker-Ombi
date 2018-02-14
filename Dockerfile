@@ -11,8 +11,8 @@ RUN apt-get update \
     libcurl3 \
     libicu55 \
     libunwind8 \
- && jobId=$(curl --silent --location "https://ci.appveyor.com/api/projects/tidusjar/requestplex/branch/DotNetCore" | jq --raw-output '.build.jobs[0].jobId') \
- && curl --silent --location "https://ci.appveyor.com/api/buildjobs/${jobId}/artifacts/linux.tar.gz" | tar xz \
+ && fileUrl=$(curl --silent --location "https://api.github.com/repos/tidusjar/Ombi/releases" | jq --raw-output '.[0].assets[] | select(.name == "linux.tar.gz") | .browser_download_url') \
+ && curl --silent --location "${fileUrl}" | tar xz \
  && apt-get autoremove --yes --purge \
  && apt-get clean \
  && rm --recursive --force /var/lib/apt/lists/* /tmp/* /var/tmp/*

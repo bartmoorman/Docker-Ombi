@@ -1,4 +1,4 @@
-FROM bmoorman/ubuntu:bionic
+FROM bmoorman/ubuntu:xenial
 
 ENV OMBI_PORT="5000"
 

@@ -1,4 +1,4 @@
-FROM bmoorman/ubuntu:bionic
+FROM bmoorman/ubuntu:xenial
 
 ENV OMBI_PORT="5000"
 
@@ -10,8 +10,8 @@ RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
     curl \
     jq \
-    libcurl4 \
-    libicu60 \
+    libcurl3 \
+    libicu55 \
     libunwind8 \
  && fileUrl=$(curl --silent --location "https://api.github.com/repos/tidusjar/Ombi/releases/latest" | jq --raw-output '.assets[] | select(.name == "linux.tar.gz") | .browser_download_url') \
  && curl --silent --location "${fileUrl}" | tar xz \

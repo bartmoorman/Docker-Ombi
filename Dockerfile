@@ -1,8 +1,8 @@
 FROM bmoorman/ubuntu:bionic
 
-ENV OMBI_PORT="5000"
+ARG DEBIAN_FRONTEND=noninteractive
 
-ARG DEBIAN_FRONTEND="noninteractive"
+ENV OMBI_PORT=5000
 
 WORKDIR /opt/Ombi
 

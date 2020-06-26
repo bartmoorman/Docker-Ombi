@@ -3,6 +3,7 @@
 docker run \
 --detach \
 --name ombi \
+--restart unless-stopped \
 --publish 5000:5000 \
 --volume ombi-config:/config \
 bmoorman/ombi:latest
@@ -15,6 +16,7 @@ services:
   ombi:
     image: bmoorman/ombi:latest
     container_name: ombi
+    restart: unless-stopped
     ports:
       - "5000:5000"
     volumes:
@@ -23,3 +25,8 @@ services:
 volumes:
   ombi-config:
 ```
+
+### Environment Variables
+|Variable|Description|Default|
+|--------|-----------|-------|
+|TZ|Sets the timezone|`America/Denver`|

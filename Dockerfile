@@ -10,11 +10,8 @@ RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
     curl \
     jq \
-    libcurl4 \
     libicu60 \
-    libssl1.0.0 \
-    libunwind8 \
- && fileUrl=$(curl --silent --location "https://api.github.com/repos/tidusjar/Ombi/releases/latest" | jq --raw-output '.assets[] | select(.name == "linux.tar.gz") | .browser_download_url') \
+ && fileUrl=$(curl --silent --location "https://api.github.com/repos/tidusjar/Ombi.Releases/releases" | jq --raw-output '.[0].assets[] | select(.name == "linux-x64.tar.gz") | .browser_download_url') \
  && curl --silent --location "${fileUrl}" | tar xz \
  && apt-get autoremove --yes --purge \
  && apt-get clean \

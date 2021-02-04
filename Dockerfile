@@ -1,4 +1,4 @@
-FROM bmoorman/ubuntu:bionic
+FROM bmoorman/ubuntu:focal
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -11,8 +11,8 @@ RUN apt-get update \
     curl \
     jq \
     libcurl4 \
-    libicu60 \
-    libssl1.0.0 \
+    libicu66 \
+    libssl1.1 \
     libunwind8 \
  && fileUrl=$(curl --silent --location "https://api.github.com/repos/tidusjar/Ombi/releases/latest" | jq --raw-output '.assets[] | select(.name == "linux.tar.gz") | .browser_download_url') \
  && curl --silent --location "${fileUrl}" | tar xz \

@@ -11,7 +11,7 @@ RUN apt-get update \
     curl \
     jq \
     libicu66 \
- && fileUrl=$(curl --silent --location "https://api.github.com/repos/tidusjar/Ombi.Releases/releases" | jq --raw-output '.[0].assets[] | select(.name == "linux-x64.tar.gz") | .browser_download_url') \
+ && fileUrl=$(curl --silent --location "https://api.github.com/repos/Ombi-app/Ombi/releases" | jq --raw-output '.[0].assets[] | select(.name == "linux-x64.tar.gz") | .browser_download_url') \
  && curl --silent --location "${fileUrl}" | tar xz \
  && apt-get autoremove --yes --purge \
  && apt-get clean \

@@ -1,6 +1,7 @@
 FROM bmoorman/ubuntu:focal
 
-ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive \
+    TARGETARCH
 
 ENV OMBI_PORT=5000
 
@@ -8,10 +9,10 @@ WORKDIR /opt/Ombi
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
-    curl \
     jq \
     libicu66 \
- && fileUrl=$(curl --silent --location "https://api.github.com/repos/Ombi-app/Ombi/releases/latest" | jq --raw-output '.assets[] | select(.name == "linux-x64.tar.gz") | .browser_download_url') \
+ && if [ "${TARGETARCH}" = "amd64" ]; then arch=x64; else arch=${TARGETARCH}; fi \
+ && fileUrl=$(curl --silent --location "https://api.github.com/repos/Ombi-app/Ombi/releases/latest" | jq --arg arch ${arch} --raw-output '.assets[] | select(.name == "linux-" + $arch + ".tar.gz") | .browser_download_url') \
  && curl --silent --location "${fileUrl}" | tar xz \
  && apt-get autoremove --yes --purge \
  && apt-get clean \

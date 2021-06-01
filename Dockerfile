@@ -1,4 +1,4 @@
-FROM bmoorman/ubuntu:bionic
+FROM bmoorman/ubuntu:focal
 
 ARG DEBIAN_FRONTEND=noninteractive \
     TARGETARCH
@@ -10,7 +10,7 @@ WORKDIR /opt/Ombi
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
     jq \
-    libicu60 \
+    libicu66 \
  && if [ "${TARGETARCH}" = "amd64" ]; then arch=x64; else arch=${TARGETARCH}; fi \
  && fileUrl=$(curl --silent --location "https://api.github.com/repos/Ombi-app/Ombi/releases/latest" | jq --arg arch ${arch} --raw-output '.assets[] | select(.name == "linux-" + $arch + ".tar.gz") | .browser_download_url') \
  && curl --silent --location "${fileUrl}" | tar xz \

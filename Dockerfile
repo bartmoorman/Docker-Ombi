@@ -1,8 +1,8 @@
 FROM bmoorman/ubuntu:focal
 
 ARG DEBIAN_FRONTEND=noninteractive \
-    TARGETOS=linux \
-    TARGETARCH=amd64
+    TARGETOS \
+    TARGETARCH
 
 ENV OMBI_PORT=5000
 
